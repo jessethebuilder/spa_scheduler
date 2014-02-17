@@ -10,7 +10,7 @@ module CalendarHelper
     delegate :content_tag, :to => :view
 
     def table
-      content_tag :table, :class => "calendar" do
+      content_tag :table, :class => "calendar_table" do
         header + week_rows
       end
     end
@@ -30,11 +30,11 @@ module CalendarHelper
     end
 
     def day_cell(day)
-      content_tag :td, view.capture(day, &callback), :class => day_classes(day)
+      content_tag :td, view.capture(day, &callback), :id => day, :class => day_classes(day)
     end
 
     def day_classes(day)
-      classes = []
+      classes = ['day_square']
       classes << "today" if day == Date.today
       classes << "notmonth" if day.month != date.month
       classes.empty? ? nil : classes.join(" ")
@@ -42,7 +42,7 @@ module CalendarHelper
 
     def weeks
       first = date.beginning_of_month.beginning_of_week(START_DAY)
-      last = date.end_of_month.end_of_week(START_DAY)
+      last = date.end_of_month.end_of_week(START_DAY) + 1.week
       (first..last).to_a.in_groups_of(7)
     end
   end

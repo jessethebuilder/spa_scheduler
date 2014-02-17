@@ -1,6 +1,4 @@
-<h1>Editing schedule</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @schedule %> |
-<%= link_to 'Back', schedules_path %>
+<div class="container">
+  <h1>Editing <%= link_to "Schedule for #{@schedule.scheduled.name}", schedule_path(@schedule) %></h1>
+  <%= render 'form' %>
+</div>

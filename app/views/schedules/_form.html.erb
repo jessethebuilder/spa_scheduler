@@ -1,21 +1,19 @@
 <%= form_for(@schedule) do |f| %>
-  <% if @schedule.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@schedule.errors.count, "error") %> prohibited this schedule from being saved:</h2>
+  <div class="row">
+    <%= render :partial => 'parts/error_explanation', :locals => {:object => @schedule} %>
+     <div class="col-md-6">
+      <div class="form-group">
+        <%= f.fields_for :availability do |avail_fields| %>
+          <%= render :partial => 'availabilities/form', :locals => {:f => avail_fields} %>
+        <% end %>
+      </div>
 
-      <ul>
-      <% @schedule.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <div class="form-group">
+        <%= f.submit :class => 'form-control btn btn-primary' %>
+      </div>
+    </div><!--col-->
+  </div><!--row-->
+   <div class="row">
 
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </div><!--row-->
 <% end %>

@@ -12,6 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+// require turbolinks
 //= require bootstrap
+//= require bootstrap-datepicker
 //= require_tree .
+
+function removeQueryString(url){
+    return url.split("?")[0];
+}

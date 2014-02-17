@@ -1,0 +1,8 @@
+<div class="form-group">
+  <%= f.label :name, :class => 'control-label' %>
+  <%= f.text_field :name, :class => 'form-control' %>
+</div>
+
+<%= f.fields_for :availability do |avail_fields| %>
+  <%= render :partial => 'availabilities/form', :locals => {:f => avail_fields} %>
+<% end %>

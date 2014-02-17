@@ -1,9 +1,10 @@
 class SchedulesController < ApplicationController
-  include CalendarHelper
   before_action :set_schedule, only: [:show, :edit, :update, :destroy]
 
-  # GET /schedules
-  # GET /schedules.json
+  def date
+    @date = Date.parse(params[:date])
+  end
+
   def index
     @schedules = Schedule.all
   end
@@ -12,6 +13,7 @@ class SchedulesController < ApplicationController
   # GET /schedules/1.json
   def show
     @date = params[:date] ? Date.parse(params[:date]) : Date.today
+    @date_specific = params['date-specific']
   end
 
   # GET /schedules/new
@@ -71,6 +73,10 @@ class SchedulesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_params
-      params.require(:schedule).permit(:user_id)
+      params.require(:schedule).permit(:user_id,
+                                       :availability_attributes => [:id, :sunday_open, :sunday_close, :monday_open, :monday_close,
+                                                                       :tuesday_open, :tuesday_close, :wednesday_open, :wednesday_close,
+                                                                       :thursday_open, :thursday_close, :friday_open, :friday_close,
+                                                                       :saturday_open, :saturday_close])
     end
 end

@@ -1,0 +1,18 @@
+<%= render :partial => 'schedules/month' %>
+
+<script>
+    $('#datepicker_icon').datepicker().on('changeDate', function(e){
+        e.preventDefault();
+//        $.ajax(removeQueryString(window.location.href) + "?date=" + e.format('yyyy-mm-dd') + "&date-specific=true");
+        window.location.href = removeQueryString(window.location.href) + "?date=" + e.format('yyyy-mm-dd') + "&date-specific=true";
+    });
+
+    $(document).on('click', '.day_square', function(e){
+        e.preventDefault();
+        $.ajax(removeQueryString(window.location.href) + "/date/" + e.target.id);
+    });
+</script>
+
+<% if @date_specific %>
+    <%= render :partial => 'schedules/date' %>
+<% end %>

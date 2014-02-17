@@ -1,12 +1,11 @@
 <div class="container">
-
-  <h2 id="month">
-    <%= link_to "<", date: @date.prev_month %>
-    <%= @date.strftime("%B %Y") %>
-    <%= link_to ">", date: @date.next_month %>
-  </h2>
-
-  <%= calendar(@date) do |date| %>
-    <%= date.day %>
-  <% end %>
+  <h1 class="text-center">
+    Schedule for <%= @schedule.scheduled.name %>
+    <% if user_signed_in? %>
+      <small>
+        <%= link_to '(edit)', edit_schedule_path(@schedule) %>
+      </small>
+    <% end %>
+  </h1>
+  <%= render :partial => 'schedules/calendar' %>
 </div>

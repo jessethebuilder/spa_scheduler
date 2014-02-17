@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140210025234) do
+ActiveRecord::Schema.define(version: 20140215224247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,37 @@ ActiveRecord::Schema.define(version: 20140210025234) do
     t.integer  "schedule_id"
     t.text     "note"
     t.integer  "procedure_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "availabilities", force: true do |t|
+    t.datetime "sunday_open"
+    t.datetime "sunday_close"
+    t.integer  "schedule_id"
+    t.datetime "monday_open"
+    t.datetime "monday_close"
+    t.datetime "tuesday_open"
+    t.datetime "tuesday_close"
+    t.datetime "wednesday_open"
+    t.datetime "wednesday_close"
+    t.datetime "thursday_open"
+    t.datetime "thursday_close"
+    t.datetime "friday_open"
+    t.datetime "friday_close"
+    t.datetime "saturday_open"
+    t.datetime "saturday_close"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "availability_exceptions", force: true do |t|
+    t.string   "name"
+    t.integer  "availability_id"
+    t.datetime "open"
+    t.datetime "close"
+    t.boolean  "reoccurring"
+    t.string   "frequency_of_reoccurance"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

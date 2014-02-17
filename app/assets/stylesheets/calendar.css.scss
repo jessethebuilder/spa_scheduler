@@ -1,4 +1,4 @@
-.calendar {
+.calendar_table {
   border-collapse: collapse;
   width: 100%;
 
@@ -26,4 +26,13 @@
 
   .notmonth, .notmonth a { color: #CCC; }
   .today { background-color: #D7F2FF; }
+
+  .day_square{
+    cursor: pointer;
+  }
+}
+
+#datepicker_icon{
+  margin-left: 20px;
+  cursor: pointer;
 }
